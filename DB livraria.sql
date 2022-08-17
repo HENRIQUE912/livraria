@@ -45,7 +45,7 @@ create table livro(
 
     idlivro int (11),
     livro_titulo varchar (100),
-    livro_preço float (2),
+    livro_preço float (8,5),
     livro_estoque int(11),
 
      constraint pk_livro
@@ -77,11 +77,12 @@ create table escreve(
 )
 
 
-
+---------------------fazer a ligação termina------------------------------------
 
 create table itens_da_venda(
-    idlivro int not null,
     idvenda int not null,
+    idlivro int not null,
+    
     
     idvenda int (11),
     qtd int(11),
@@ -95,3 +96,4 @@ create table itens_da_venda(
     foreign key (idlivro)
     references livro(idlivro)
 )
+------------------------------------------------------------------
