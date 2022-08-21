@@ -42,7 +42,7 @@ create table cliente(
 create table livro(
       idgenero int not null,
         ideditora int not null,
-		 idvenda int not null,
+		
 
     idlivro int (11),
     livro_titulo varchar (100),
@@ -59,18 +59,11 @@ create table livro(
 
        constraint fk_editora
     foreign key (ideditora)
-    references editora(ideditora),
+    references editora(ideditora)
 
     
-    constraint fk_venda
-    foreign key (idvenda)
-    references itens_da_venda(idvenda),
-
-       constraint fk_itens_da_venda
-    foreign key (idvenda)
-    references itens_da_venda(idvenda)
+    
 )
-
 create table escreve(
    idlivro int (11),
     idautor int (11),
@@ -87,18 +80,6 @@ create table escreve(
 
 
 
-create table itens_da_venda(
-
-     idvenda int (11),
-    qtd int(11),
-    subtotal varchar(45),
-
-     constraint pk_venda
-    primary key (idvenda)
-
-      
-)
-
 create table venda(
     idcliente int not null,
         idvenda int not null,
@@ -108,25 +89,48 @@ create table venda(
 
    
 
+    constraint pk_venda
+    primary key (idvenda),
+  
+
     constraint fk_cliente
     foreign key (idcliente)
-    references cliente(idcliente),
+    references cliente(idcliente)
 
-    constraint fk_venda
-    foreign key (idvenda)
-    references venda(idvenda)
+      
+)
+
+create table itens_da_venda(
+
+     idvenda int (11),
+      idlivro int (11),
+    
+    qtd int(11),
+    subtotal varchar(45),
+
+     constraint fk_venda
+     foreign key (idvenda)
+    REFERENCES venda(idvenda),
+
+    constraint fk_livro2
+    foreign key (idlivro)
+    references livro(idlivro)
+
 
       
 )
 
 
 
-create table vendas(
+
+
+
+create table venda(
    idvenda int (11),
     idcliente int (11),
 
 
-    constraint fk_vendas
+    constraint fk_venda2
     foreign key (idvenda)
     references itens_da_venda(idvenda),
 
@@ -136,5 +140,6 @@ create table vendas(
 )
 
 ---------------------------------------------------------------------------------------------------
+
 
 
